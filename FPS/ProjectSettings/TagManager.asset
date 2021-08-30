@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Shootable
+  - CinemachineTarget
+  - Weapon
+  - Grenade
+  - WeaponSpawn
+  - Door
+  - Settings
+  - MenuImage
+  - MenuMessage
+  - PlayButtonText
+  - GameStatus
+  - MenuNavigation
+  - Enemy1
+  - Enemy2
+  - Ally1
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Lighting
+  - Water
+  - UI
+  - Ground
+  - Postprocessing
+  - FirstPerson
+  - ThirdPerson
+  - Projectile
+  - collectable
+  - Enemy
+  - Ally
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3726983771
+    locked: 0
+  - name: Foreground
+    uniqueID: 2076686091
+    locked: 0
