@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cd28973bc1640e09681e464c36f345, type: 3}
+  m_Name: GrenadeLauncher
+  m_EditorClassIdentifier: 
+  enableOnStart: 0
+  loadedAtStart: 1
+  weaponPrefab: {fileID: 3034646729660226304, guid: abbe6ac85becf4cf38a5536f3486a3e1,
+    type: 3}
+  barrelFlash: {fileID: 0}
+  crosshairSprite: {fileID: 21300000, guid: 63fa0c64fdaae426fa75f10e38d5b044, type: 3}
+  crosshairColour: {r: 1, g: 1, b: 1, a: 1}
+  barrelSound: {fileID: 8300000, guid: 25c790e22a1c246f194b56196d7bde82, type: 3}
+  reloadSound: {fileID: 8300000, guid: 78f38fd02b1d14283a809fc06d30652f, type: 3}
+  switchInSound: {fileID: 8300000, guid: 24cc26eed13fa459896484beed8239f3, type: 3}
+  switchOutSound: {fileID: 8300000, guid: 3e13d838b778d43fe99da1dd0fa764e1, type: 3}
+  animatorController: {fileID: 9100000, guid: f0c843fea4af949c4980850ebe6ffff0, type: 2}
+  fireAnimationVarName: Firing
+  reloadAniamtionVarName: Reloading
+  switchAnimationVarName: Switching
+  aimAnimationVarName: Aiming
+  runAnimationVarName: Running
+  walkAnimationVarName: Walking
+  jumpAnimationVarName: Jumping
+  mouseXAnimationVarName: Mouse X
+  mouseYAnimationVarName: Mouse Y
+  barrelFlashSpawnName: GrenadeLauncher/Aimbody/[Flash]
+  projectileSpawnName: GrenadeLauncher/Aimbody/[Pro]
+  cartridgeSpawnName: GrenadeLauncher/Aimbody/[Cart]
+  outputType: 1
+  firingType: 0
+  roundsPerBurst: 1
+  fireRate: 1
+  outputPerRound: 1
+  aimingSpread: 0.0226
+  spread: 0.0751
+  movementSpread: 0.1106
+  ammo: {fileID: 11400000, guid: 252c90462a26841a39ffe4ae33663f61, type: 2}
+  capacity: 6
+  ammoLossPerRound: 1
+  reloadingType: 0
+  ammoAddedPerReload: 1
+  aimingTime: 0.25
+  reloadingTime: 1
+  switchingTime: 1
+  runningRecoveryTime: 0.25
+  partialReloadInterruptionTime: 0.25
+  rayMode:
+    rayImpact: {fileID: 0}
+    range: 100
+    impactForce: 100
+    damage: 10
+  projectileMode:
+    projectileObject: {fileID: 1476758083364642, guid: d6eda42a6c48c430698526cb6f08d5f9,
+      type: 3}
+    areaOfDamage: {fileID: 0}
+    launchForce: 100
+    damage: 30
+  ejectedCartridge:
+    ejectedObject: {fileID: 0}
+    ejectionTrajectory: {x: -1, y: 0, z: 0}
+    ejectionForce: 5

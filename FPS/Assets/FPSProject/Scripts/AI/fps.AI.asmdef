@@ -1,0 +1,17 @@
+{
+    "name": "fps.AI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9c5543eabb73a6249ac07b2c065ee8b4",
+        "GUID:3112c04dd3887594d895d8b949934f42"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

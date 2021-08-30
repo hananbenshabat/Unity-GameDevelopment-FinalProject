@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cd28973bc1640e09681e464c36f345, type: 3}
+  m_Name: DefaultWeapon
+  m_EditorClassIdentifier: 
+  enableOnStart: 0
+  loadedAtStart: 1
+  weaponPrefab: {fileID: 2455460873848981189, guid: dea3ff4a573164554b384777aa98a7c0, type: 3}
+  barrelFlash: {fileID: 1198331454705934, guid: b88b36e14ef014a4488e63fe05fdd429, type: 3}
+  crosshairSprite: {fileID: 21300000, guid: 63fa0c64fdaae426fa75f10e38d5b044, type: 3}
+  crosshairColour: {r: 1, g: 1, b: 1, a: 1}
+  barrelSound: {fileID: 8300000, guid: 06e6a2b9d33e74957a9dd35435658859, type: 3}
+  reloadSound: {fileID: 8300000, guid: 78f38fd02b1d14283a809fc06d30652f, type: 3}
+  switchInSound: {fileID: 8300000, guid: 24cc26eed13fa459896484beed8239f3, type: 3}
+  switchOutSound: {fileID: 8300000, guid: 3e13d838b778d43fe99da1dd0fa764e1, type: 3}
+  animatorController: {fileID: 9100000, guid: 21d612e1554c54588891097bd7c252f3, type: 2}
+  fireAnimationVarName: Firing
+  reloadAniamtionVarName: Reloading
+  switchAnimationVarName: Switching
+  aimAnimationVarName: Aiming
+  runAnimationVarName: Running
+  walkAnimationVarName: Walking
+  jumpAnimationVarName: Jumping
+  mouseXAnimationVarName: Mouse X
+  mouseYAnimationVarName: Mouse Y
+  barrelFlashSpawnName: DefaultWeapon/Aimbody/[Flash]
+  projectileSpawnName: DefaultWeapon/Aimbody/[Pro]
+  cartridgeSpawnName: DefaultWeapon/Aimbody/[Cart]
+  outputType: 0
+  firingType: 0
+  roundsPerBurst: 1
+  fireRate: 10
+  outputPerRound: 1
+  aimingSpread: 0.004
+  spread: 0.121
+  movementSpread: 0.161
+  ammo: {fileID: 11400000, guid: 506363c39a61e4af89ff6365fc11f851, type: 2}
+  capacity: 10
+  ammoLossPerRound: 1
+  reloadingType: 0
+  ammoAddedPerReload: 1
+  aimingTime: 0.25
+  reloadingTime: 1
+  switchingTime: 1
+  runningRecoveryTime: 0.25
+  partialReloadInterruptionTime: 0.25
+  rayMode:
+    rayImpact: {fileID: 1876966866678746, guid: cdf9ef97b2ea14ea6a88c6f801553591, type: 3}
+    range: 100
+    impactForce: 100
+  projectileMode:
+    projectileObject: {fileID: 0}
+    launchForce: 100
+  ejectedCartridge:
+    ejectedObject: {fileID: 1655932066338330, guid: c867c8b1450e244548b791ba4c132f6a, type: 3}
+    ejectionTrajectory: {x: 1, y: 0, z: 0}
+    ejectionForce: 5

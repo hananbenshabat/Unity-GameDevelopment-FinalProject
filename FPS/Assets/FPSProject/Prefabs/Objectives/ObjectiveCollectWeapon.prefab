@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5189043746877594682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5189043747228753000}
+  - component: {fileID: 5189043746877594630}
+  - component: {fileID: 5189043746877594629}
+  - component: {fileID: 5189043746877594628}
+  - component: {fileID: 5189043746877594683}
+  m_Layer: 0
+  m_Name: ObjectiveCollectWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5189043747228753000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189043746877594682}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5189043746877594630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189043746877594682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a249ab69bc45449cfac0597a0036868a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollectionType: 0
+  m_Weapon: {fileID: 11400000, guid: 845d05b3ac4114d69b41fa9dc7d8a8e7, type: 2}
+  m_Ammo: {fileID: 0}
+  m_Grenade: {fileID: 0}
+  m_Enable: 1
+  m_AmmoInWeapon: 25
+  m_AddToAmmoTotal: 0
+  m_AfterCollectionObject: {fileID: 1876966866678746, guid: 3964ab0c78c4741839780646df6f0255,
+    type: 3}
+  m_AfterCollectionDespawnTime: 2
+  VerticalBobFrequency: 1
+  BobbingAmount: 1
+  RotatingSpeed: 360
+--- !u!54 &5189043746877594629
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189043746877594682}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &5189043746877594628
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189043746877594682}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &5189043746877594683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189043746877594682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60fac7095a485954f8a9d997bdc1f35a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Title: Collect any weapon
+  Description: Change a weapon using TAB
+  IsOptional: 1
+  DelayVisible: 4
+  ItemToPickup: {fileID: 0}
