@@ -389,9 +389,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3815580454231506454}
+  - component: {fileID: 3168726044172217932}
   m_Layer: 0
   m_Name: WeaponSpawn
-  m_TagString: WeaponSpawn
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -404,7 +405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815580454231506457}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49574977, y: 0.5535803, z: 15.699353}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3810840131781805082}
@@ -417,6 +418,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3168726044172217932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3815580454231506457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e996b90d3d498454cb92b0ef97631024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WeaponCollection: {fileID: 11400000, guid: 547231c34a9504a8aa95bfb05f26dcd7, type: 2}
+  weaponPrefab1: {fileID: 3094025335845984842, guid: d2382e56286c549b1afb8a13d0679f4c,
+    type: 3}
+  weaponPrefab2: {fileID: 3094025335845984842, guid: 3181ebf6db2404f90822c4b132f6087b,
+    type: 3}
+  weaponPrefab3: {fileID: 3094025335845984842, guid: 18ca55407566f43d0a76eea739bd46d6,
+    type: 3}
+  weaponPrefab4: {fileID: 3094025335845984842, guid: 3a0e03003ae5d4af486db082fcfdbb82,
+    type: 3}
+  weaponPrefab5: {fileID: 3094025335845984842, guid: 3d4a95a4230d04d07a3e61dbf6ce8dfc,
+    type: 3}
+  grenadePrefab: {fileID: 123396, guid: 1bcf0d552dc68ce41bf81f2e0d84dd12, type: 3}
+  isGrenadeEnabled: 1
 --- !u!1 &3816135694626239416
 GameObject:
   m_ObjectHideFlags: 0

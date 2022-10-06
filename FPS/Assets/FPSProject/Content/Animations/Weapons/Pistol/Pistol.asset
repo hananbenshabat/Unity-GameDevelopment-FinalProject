@@ -58,8 +58,8 @@ MonoBehaviour:
   rayMode:
     rayImpact: {fileID: 1876966866678746, guid: cdf9ef97b2ea14ea6a88c6f801553591,
       type: 3}
-    range: 100
-    impactForce: 80
+    range: 1000
+    impactForce: 800
     damage: 5
   projectileMode:
     projectileObject: {fileID: 0}

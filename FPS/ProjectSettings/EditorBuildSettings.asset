@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/FPSProject/Scenes/IntroMenu.unity
-    guid: c08eff6167725da4ea31829fe0604039
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/FPSProject/Scenes/Scene_FPS.unity
     guid: c0d944ca9defd20449bc336e50d75a08
-  - enabled: 1
-    path: Assets/FPSProject/Scenes/LoseScene.unity
-    guid: 556627e8b8e620648b6a5b4764a81757
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/FPSProject/Scenes/Scene_Menu.unity
     guid: 7551a946fe856b94b9143260028c8c54

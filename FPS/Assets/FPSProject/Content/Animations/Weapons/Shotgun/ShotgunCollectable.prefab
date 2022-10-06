@@ -608,7 +608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3094025335845984842}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 479.33124, y: 18.399902, z: 517.12366}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1696553593210788826}
@@ -653,6 +653,7 @@ MonoBehaviour:
   VerticalBobFrequency: 1
   BobbingAmount: 1
   RotatingSpeed: 360
+  grenade: {fileID: 0}
 --- !u!114 &-4878908166435475084
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -466,6 +466,12 @@ MonoBehaviour:
   HittableLayers:
     serializedVersion: 2
     m_Bits: 4294967295
+  BulletTrail: {fileID: 328621789431213768, guid: b6d3f870bc1b76c49b9d98ebc2d1c1ba,
+    type: 3}
+  ImpactParticleSystem: {fileID: 9064919875212695174, guid: 067bf2a6ce9db584188aaf4b270709d4,
+    type: 3}
+  _bulletHolePrefab: {fileID: 1892351807075712, guid: 44be68b4fc4366142a9cd1ae1f761ea4,
+    type: 3}
 --- !u!1 &200769733915474783
 GameObject:
   m_ObjectHideFlags: 0

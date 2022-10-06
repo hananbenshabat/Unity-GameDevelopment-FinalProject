@@ -10,10 +10,8 @@ public class SpawnWeaponsRandomly : MonoBehaviour
     [SerializeField] GameObject grenadePrefab;
     [SerializeField] bool isGrenadeEnabled;
 
-    GameObject[] m_SpawnObjectives;
-    GameObject m_spawnWeapon;
+    GameObject m_SpawnWeapon, m_RandomWeapon;
     List<int> m_EnabledOnStartWeaponsIndexes;
-    Transform m_spawnWeaponPosition;
     int m_WeaponsLength, randomIndex, i;
 
     private void Awake()
@@ -39,7 +37,7 @@ public class SpawnWeaponsRandomly : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnWeapons();
+        WeaponSpawn();
     }
 
     // Update is called once per frame
@@ -48,47 +46,48 @@ public class SpawnWeaponsRandomly : MonoBehaviour
         
     }
 
-    void SpawnWeapons()
+    GameObject RandomWeapon()
+    {
+        randomIndex = Random.Range(0, m_WeaponsLength);
+
+        while (m_EnabledOnStartWeaponsIndexes.Contains(randomIndex))
+        {
+            randomIndex = Random.Range(0, m_WeaponsLength);
+        }
+
+        switch (randomIndex)
+        {
+            case 0:
+                return weaponPrefab1;
+            case 1:
+                return weaponPrefab2;
+            case 2:
+                return weaponPrefab3;
+            case 3:
+                return weaponPrefab4;
+            case 4:
+                return weaponPrefab5;
+            case 5:
+                return grenadePrefab;
+        }
+
+        return null;
+    }
+
+    void WeaponSpawn()
     {
         if (m_EnabledOnStartWeaponsIndexes.Count < m_WeaponsLength)
         {
-            m_SpawnObjectives = GameObject.FindGameObjectsWithTag("WeaponSpawn");
-
-            for (i = 0; i < m_SpawnObjectives.Length; i++)
+            m_RandomWeapon = RandomWeapon();
+            if (m_RandomWeapon != null)
             {
-                randomIndex = Random.Range(0, m_WeaponsLength);
+                m_SpawnWeapon = Instantiate(m_RandomWeapon) as GameObject;
 
-                while (m_EnabledOnStartWeaponsIndexes.Contains(randomIndex))
-                {
-                    randomIndex = Random.Range(0, m_WeaponsLength);
-                }
+                m_SpawnWeapon.name = m_RandomWeapon.name;
 
-                switch (randomIndex)
-                {
-                    case 0:
-                        m_spawnWeapon = weaponPrefab1;
-                        break;
-                    case 1:
-                        m_spawnWeapon = weaponPrefab2;
-                        break;
-                    case 2:
-                        m_spawnWeapon = weaponPrefab3;
-                        break;
-                    case 3:
-                        m_spawnWeapon = weaponPrefab4;
-                        break;
-                    case 4:
-                        m_spawnWeapon = weaponPrefab5;
-                        break;
-                    case 5:
-                        m_spawnWeapon = grenadePrefab;
-                        break;
-                }
+                m_SpawnWeapon.transform.position = new Vector3(transform.position.x + 0.7f, transform.position.y + 1, transform.position.z);
 
-                m_spawnWeaponPosition = m_SpawnObjectives[i].transform;
-                m_spawnWeaponPosition.position = new Vector3(m_spawnWeaponPosition.position.x + 0.7f, m_spawnWeaponPosition.position.y + 1, m_spawnWeaponPosition.position.z);
-
-                Instantiate(m_spawnWeapon, m_spawnWeaponPosition);
+                Instantiate(m_SpawnWeapon, m_SpawnWeapon.transform);
             }
         }
     }

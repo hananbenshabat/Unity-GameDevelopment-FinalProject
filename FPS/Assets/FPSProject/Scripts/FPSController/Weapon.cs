@@ -1,10 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
 using Unity.FPS.Game;
-
-
 
 namespace Unity.FPS.FPSController
 {
@@ -101,7 +98,7 @@ namespace Unity.FPS.FPSController
         [Tooltip(WeaponTooltip.switchInSound)] public AudioClip switchInSound;
         [Tooltip(WeaponTooltip.switchOutSound)] public AudioClip switchOutSound;
 
-        [Tooltip(WeaponTooltip.animatorController)] public AnimatorController animatorController;
+        [Tooltip(WeaponTooltip.animatorController)] public RuntimeAnimatorController animatorController;
         [Tooltip(WeaponTooltip.fireAnimationVarName)] public string fireAnimationVarName = "Firing";
         [Tooltip(WeaponTooltip.reloadAniamtionVarName)] public string reloadAniamtionVarName = "Reloading";
         [Tooltip(WeaponTooltip.switchAnimationVarName)] public string switchAnimationVarName = "Switching";

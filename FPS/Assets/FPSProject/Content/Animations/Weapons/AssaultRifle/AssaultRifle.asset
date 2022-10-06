@@ -46,7 +46,7 @@ MonoBehaviour:
   spread: 0.0658
   movementSpread: 0.1469
   ammo: {fileID: 11400000, guid: c41e8b3aa68344cdeb2daa7e36413a49, type: 2}
-  capacity: 25
+  capacity: 30
   ammoLossPerRound: 1
   reloadingType: 0
   ammoAddedPerReload: 1

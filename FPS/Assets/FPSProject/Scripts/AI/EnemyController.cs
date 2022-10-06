@@ -93,11 +93,19 @@ namespace Unity.FPS.AI
         [Tooltip("Color of the sphere gizmo representing the detection range")]
         public Color DetectionRangeColor = Color.blue;
 
+        [Header("Layers to ignore")]
+        [SerializeField] string m_IgnoredLayerName1 = "AICollect";
+        [SerializeField] string m_IgnoredLayerName2 = "Enemy";
+
         [Header("Weapons")]
         [SerializeField] WeaponCollection m_WeaponCollection;
 
         [Header("Grenade")]
         [SerializeField] GameObject grenadePrefab;
+
+        [Header("Bullet Holes, Trails")]
+        [SerializeField] TrailRenderer BulletTrail;
+        [SerializeField] ParticleSystem ImpactParticleSystem;
 
         public UnityAction onAttack;
         public UnityAction onDetectedTarget;
@@ -144,6 +152,24 @@ namespace Unity.FPS.AI
         Weapon m_SelectedWeapon, m_CollectedWeapon;
         CollectableObject m_Collect;
         NavigationModule m_NavigationModule;
+
+        private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
+        {
+            float time = 0;
+            Vector3 startPosition = Trail.transform.position;
+
+            while (time < 1)
+            {
+                Trail.transform.position = Vector3.Lerp(startPosition, Hit.point, time);
+                time += Time.deltaTime / Trail.time;
+
+                yield return null;
+            }
+            Trail.transform.position = Hit.point;
+            Instantiate(ImpactParticleSystem, Hit.point, Quaternion.LookRotation(Hit.normal));
+
+            Destroy(Trail.gameObject, Trail.time);
+        }
 
         void Start()
         {
@@ -642,11 +668,15 @@ namespace Unity.FPS.AI
                     // '~' converts integer to negitive spectrum, thus defines listed layers will be ignored
                     
                     // I don't really need to ignore any layers anymore..
-                    int layersToIgnore = ~LayerMask.GetMask("Water");
+                    int layersToIgnore = ~LayerMask.GetMask("Water", m_IgnoredLayerName1, m_IgnoredLayerName2);
 
                     // ?    need raycast to ignore collider of Enemy_HoverBot, without ignoring other player's Enemy_HoverBot, may involve RaycastAll
                     if (Physics.Raycast(m_GunSpawn.position, m_GunSpawn.forward + randomisedSpread, out hit, m_SelectedWeapon.rayMode.range, layersToIgnore))
                     {
+                        TrailRenderer trail = Instantiate(BulletTrail, m_ProjectileSpawn.position, Quaternion.identity);
+
+                        StartCoroutine(SpawnTrail(trail, hit));
+
                         if (m_SelectedWeapon.rayMode.rayImpact != null)
                         {
                             GameObject hitInstance = Instantiate(m_SelectedWeapon.rayMode.rayImpact, hit.point, Quaternion.LookRotation(hit.normal));
@@ -1149,57 +1179,66 @@ namespace Unity.FPS.AI
         }
 
         // Collecting
-        void OnTriggerEnter(Collider other)
+        //void OnTriggerEnter(Collider other)
+        //{
+        //    if (other.transform.gameObject.layer == 11 && other.tag == "Weapon")
+        //    {
+        //        EnemyCollectWeapon(other, other.transform.GetComponent<CollectableObject>());
+        //    }
+        //    else if (other.tag == "Grenade")
+        //    {
+        //        EnemyCollectGrenade(other, other.transform.GetComponent<CollectableObject>());
+        //    }
+        //}
+
+        public void EnemyCollectWeapon(Collider other, CollectableObject collect)
         {
-            if (other.transform.gameObject.layer == 11)
+            m_Collect = collect;
+
+            m_CollectedWeapon = m_Collect.m_Weapon;
+
+            if (!isEnabled(m_CollectedWeapon))
             {
-                m_Collect = other.transform.GetComponent<CollectableObject>();
-                if (other.tag == "Weapon")
+                if (m_Collect.m_CollectionType == CollectableObject.CollectionType.Weapon)
                 {
-                    m_CollectedWeapon = m_Collect.m_Weapon;
-
-                    if (!isEnabled(m_CollectedWeapon))
-                    {
-                        if (m_Collect.m_CollectionType == CollectableObject.CollectionType.Weapon)
-                        {
-                            EnableWeapon(m_CollectedWeapon, m_Collect.m_Enable, m_Collect.m_AmmoInWeapon);
-                            IncreaseAmmoCount(m_CollectedWeapon.ammo, m_Collect.m_AddToAmmoTotal);
-                        }
-                        else if (m_Collect.m_CollectionType == CollectableObject.CollectionType.Ammo)
-                        {
-                            IncreaseAmmoCount(m_Collect.m_Ammo, m_Collect.m_AddToAmmoTotal);
-                        }
-
-                        if (m_Collect.m_AfterCollectionObject != null)
-                        {
-                            GameObject afterObjectInstance = Instantiate(m_Collect.m_AfterCollectionObject, m_Collect.transform.position, m_Collect.transform.rotation);
-                            Destroy(afterObjectInstance, m_Collect.m_AfterCollectionDespawnTime);
-                        }
-
-                        m_Collect.m_Enable = false;
-                        Destroy(m_Collect.gameObject);
-                        CheckWeaponSwitch();
-                    }
+                    EnableWeapon(m_CollectedWeapon, m_Collect.m_Enable, m_Collect.m_AmmoInWeapon);
+                    IncreaseAmmoCount(m_CollectedWeapon.ammo, m_Collect.m_AddToAmmoTotal);
                 }
-                else if (other.tag == "Grenade")
+                else if (m_Collect.m_CollectionType == CollectableObject.CollectionType.Ammo)
                 {
-                    if(IsGrenadeCollectable())
-                    {
-                        if (m_Collect.m_CollectionType == CollectableObject.CollectionType.Grenade)
-                        {
-                            EnableGrenade();
-
-                            if (m_Collect.m_AfterCollectionObject != null)
-                            {
-                                GameObject afterObjectInstance = Instantiate(m_Collect.m_AfterCollectionObject, m_Collect.transform.position, m_Collect.transform.rotation);
-                                Destroy(afterObjectInstance, m_Collect.m_AfterCollectionDespawnTime);
-                            }
-
-                            Destroy(m_Collect.gameObject);
-                        }
-                    }
+                    IncreaseAmmoCount(m_Collect.m_Ammo, m_Collect.m_AddToAmmoTotal);
                 }
 
+                if (m_Collect.m_AfterCollectionObject != null)
+                {
+                    GameObject afterObjectInstance = Instantiate(m_Collect.m_AfterCollectionObject, m_Collect.transform.position, m_Collect.transform.rotation);
+                    Destroy(afterObjectInstance, m_Collect.m_AfterCollectionDespawnTime);
+                }
+
+                m_Collect.m_Enable = false;
+                Destroy(m_Collect.gameObject);
+                CheckWeaponSwitch();
+            }
+        }
+
+        public void EnemyCollectGrenade(Collider other, CollectableObject collect)
+        {
+            m_Collect = collect;
+
+            if (IsGrenadeCollectable())
+            {
+                if (m_Collect.m_CollectionType == CollectableObject.CollectionType.Grenade)
+                {
+                    EnableGrenade();
+
+                    if (m_Collect.m_AfterCollectionObject != null)
+                    {
+                        GameObject afterObjectInstance = Instantiate(m_Collect.m_AfterCollectionObject, m_Collect.transform.position, m_Collect.transform.rotation);
+                        Destroy(afterObjectInstance, m_Collect.m_AfterCollectionDespawnTime);
+                    }
+
+                    Destroy(m_Collect.gameObject);
+                }
             }
         }
 

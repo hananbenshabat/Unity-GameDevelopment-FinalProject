@@ -69,6 +69,10 @@ namespace Unity.FPS.FPSController
         [Tooltip("Layers this projectile can collide with")]
         public LayerMask HittableLayers = -1;
 
+        [Header("Bullet Holes, Trails")]
+        [SerializeField] TrailRenderer BulletTrail;
+        [SerializeField] ParticleSystem ImpactParticleSystem;
+
         Transform m_ProjectileSpawn, m_BarrelFlashSpawn, m_EjectedCartridgeSpawn;
 
         GrenadeThrower m_GrenadeThrower;
@@ -105,6 +109,24 @@ namespace Unity.FPS.FPSController
         Vector2 m_CurrentMouseInfluance;
 
         public UnityAction<WeaponCollection, int> OnAddedWeapon;
+
+        private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
+        {
+            float time = 0;
+            Vector3 startPosition = Trail.transform.position;
+
+            while (time < 1)
+            {
+                Trail.transform.position = Vector3.Lerp(startPosition, Hit.point, time);
+                time += Time.deltaTime / Trail.time;
+
+                yield return null;
+            }
+            Trail.transform.position = Hit.point;
+            Instantiate(ImpactParticleSystem, Hit.point, Quaternion.LookRotation(Hit.normal));
+
+            Destroy(Trail.gameObject, Trail.time);
+        }
 
         void Awake()
         {
@@ -253,11 +275,17 @@ namespace Unity.FPS.FPSController
                     // Needed to ignore multiple layers (FirstPerson, ThirdPerson & Projectile)
                     // Raycast's integer parameter behaves like bool array at bit level
                     // '~' converts integer to negitive spectrum, thus defines listed layers will be ignored
-                    int layersToIgnore = ~LayerMask.GetMask(m_FirstPersonLayerName, m_ThirdPersonLayerName, m_ProjectileLayerName);
+                    int layersToIgnore = ~LayerMask.GetMask(m_FirstPersonLayerName, m_ThirdPersonLayerName, m_ProjectileLayerName, "Ally", "AICollect");
 
                     // ?    need raycast to ignore collider of FPSController, without ignoring other player's FPSController, may involve RaycastAll
-                    if (Physics.Raycast(m_CameraRaySpawn.position, m_CameraRaySpawn.forward + randomisedSpread, out hit, m_WeaponCollection.weapons[m_SelectedWeapon].rayMode.range, layersToIgnore))
+                    if (Physics.Raycast(m_CameraRaySpawn.position, m_CameraRaySpawn.forward + randomisedSpread, out hit, 
+                        m_WeaponCollection.weapons[m_SelectedWeapon].rayMode.range, layersToIgnore))
                     {
+                        TrailRenderer trail = Instantiate(BulletTrail, m_ProjectileSpawn.position, Quaternion.identity);
+
+                        StartCoroutine(SpawnTrail(trail, hit));
+
+
                         if (m_WeaponCollection.weapons[m_SelectedWeapon].rayMode.rayImpact != null)
                         {
                             GameObject hitInstance = Instantiate(m_WeaponCollection.weapons[m_SelectedWeapon].rayMode.rayImpact, hit.point, Quaternion.LookRotation(hit.normal));
@@ -268,7 +296,6 @@ namespace Unity.FPS.FPSController
                         {
                             // point damage
                             damageable = hit.collider.GetComponent<Damageable>();
-
                             if (damageable)
                             {
                                 damageable.InflictDamage(m_WeaponCollection.weapons[m_SelectedWeapon].rayMode.damage, false);
