@@ -6,7 +6,7 @@
 
 	
 
-[![FPS-Preview](https://user-images.githubusercontent.com/75164307/194331722-33401959-521a-4be4-bb79-284d3d6fb3df.jpg)]([https://youtu.be/rv0s_7tfKOY](https://www.youtube.com/watch?v=rv0s_7tfKOY "FPS - Preview"))
+[![FPS-Preview](https://user-images.githubusercontent.com/75164307/194331722-33401959-521a-4be4-bb79-284d3d6fb3df.jpg)](https://www.youtube.com/watch?v=rv0s_7tfKOY "FPS - Preview")
 
 [![Watch the video]([https://i.imgur.com/vKb2F1B.png](https://user-images.githubusercontent.com/75164307/194331722-33401959-521a-4be4-bb79-284d3d6fb3df.jpg))]([https://youtu.be/rv0s_7tfKOY](https://www.youtube.com/watch?v=rv0s_7tfKOY))
 #
